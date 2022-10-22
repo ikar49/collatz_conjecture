@@ -1,0 +1,19 @@
+[package]
+name = "collatz_conjecture"
+version = "0.1.0"
+description = "Collatz Conjecture (3n+1 problem) Iterator"
+authors = ["Pavel Levchenko <ikar49@pm.me>"]
+
+# Helpful information for new users
+readme = "README.md"
+homepage = "https://github.com/ikar49/collatz_conjecture"
+repository = "https://github.com/ikar49/collatz_conjecture"
+license = "MIT OR Apache-2.0"
+
+# Information for registry (crates.io)
+publish = false
+
+# Build information
+edition = "2021"
+
+[dependencies]
