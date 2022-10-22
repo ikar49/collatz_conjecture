@@ -1,25 +1,22 @@
 use std::io;
+use std::num::NonZeroU128;
 
 #[derive(Debug, Clone, Copy)]
 struct CollatzIterator(u128);
 
 impl CollatzIterator {
-    fn new(n: u128) -> Self {
-        Self(n)
+    fn new(n: NonZeroU128) -> Self {
+        Self(n.get())
     }
 }
 
 impl Iterator for CollatzIterator {
-    type Item = u128;
+    type Item = NonZeroU128;
 
     fn next(&mut self) -> Option<Self::Item> {
-        let result = if self.0 == 0 {
-            None
-        } else {
-            Some(self.0.clone())
-        };
+        let result = NonZeroU128::new(self.0.clone());
 
-        if self.0 % 2 == 0 {
+        if &self.0 % 2 == 0 {
             self.0 = self.0 / 2;
         } else {
             self.0 = self.0.checked_mul(3)
@@ -35,16 +32,16 @@ impl Iterator for CollatzIterator {
 }
 
 fn main() -> io::Result<()> {
-    let mut collatz_iter = CollatzIterator::new(
+    let mut collatz_iter = CollatzIterator::new(NonZeroU128::new(
         1024_u128.pow(12_u32) * 255 /*+ 1*/ // with +1 will overflow on first step
-    );
+    ).unwrap());
     println!("Test: {:?}", collatz_iter);
     loop {
         let n = collatz_iter.next()
             .ok_or(io::Error::new(io::ErrorKind::Other, "Overflow u128!"))?;
 
         println!("{}", n);
-        if n == 1 {
+        if n == NonZeroU128::new(1).unwrap() {
             println!("That's cycle 4 -> 2 -> 1!");
             break;
         }
