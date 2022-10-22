@@ -20,10 +20,11 @@ impl Iterator for CollatzIterator {
             self.0 = self.0 / 2;
         } else {
             self.0 = self.0.checked_mul(3)
+                            // Записываем MAX, чтобы
                            .unwrap_or(u128::MAX)
-                            // Хотим вызвать второе переполнение при сложении,
+                            // вызвать второе переполнение при сложении, чтобы
                            .checked_add(1)
-                            // чтобы точно записать 0
+                            // точно записать 0 в self
                            .unwrap_or(0);
         }
 
@@ -33,7 +34,7 @@ impl Iterator for CollatzIterator {
 
 fn main() -> io::Result<()> {
     let mut collatz_iter = CollatzIterator::new(NonZeroU128::new(
-        1024_u128.pow(12_u32) * 255 /*+ 1*/ // with +1 will overflow on first step
+        1024_u128.pow(12_u32) * 255 // + 1 // with +1 will overflow on first step
     ).unwrap());
     println!("Test: {:?}", collatz_iter);
     loop {
