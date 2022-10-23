@@ -15,7 +15,7 @@ publish = false
 
 # Build information
 edition = "2021"
-# NonZeroU128::checked_add function is used
+# NonZero*::checked_add function is used
 rust-version = "1.64"
 
 [dependencies]
