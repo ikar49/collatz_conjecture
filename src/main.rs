@@ -1,8 +1,6 @@
 use std::io::{self, Error, ErrorKind::Other};
-use std::num::NonZeroU128;
-use std::num::NonZeroU8;
 
-use collatz_conjecture::*;
+use collatz_conjecture::prelude::*;
 
 fn main() -> io::Result<()> {
     let mut collatz_iter = NonZeroU128::new(
@@ -21,15 +19,15 @@ fn main() -> io::Result<()> {
         }
     }
 
-    let mut collatz_iter = NonZeroU8::new(2_u8.pow(5) - 1).unwrap().collatz_iter();
+    let mut collatz_iter = NonZeroU16::new(2_u16.pow(5) - 1).unwrap().collatz_iter();
     println!("Test: {:?}", collatz_iter);
 
     loop {
         let n = collatz_iter.next()
-            .ok_or(Error::new(Other, "Overflow u8!"))?;
+            .ok_or(Error::new(Other, "Overflow u16!"))?;
 
         println!("{}", n);
-        if n == NonZeroU8::new(1).unwrap() {
+        if n == NonZeroU16::new(1).unwrap() {
             println!("That's cycle 4 -> 2 -> 1!");
             break;
         }
