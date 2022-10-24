@@ -1,27 +1,19 @@
-//macro_rules! collatz_internal {
-//    (ns $)
-//}
-
 macro_rules! collatz {
-    ($trait_collatz_name:ident, $struct_collatz_name:ident, $nonzero_name:ident, $int_name:ty) => (
+    ($iter_name:ident($int_name:ty) for $nonzero_name:ident) => (
         use std::num::$nonzero_name;
+        use crate::CollatzIterator;
 
-        pub trait $trait_collatz_name {
-            type Iterator;
-            fn collatz_iter(&self) -> Self::Iterator;
-        }
-
-        impl $trait_collatz_name for $nonzero_name {
-            type Iterator = $struct_collatz_name;
+        impl CollatzIterator for $nonzero_name {
+            type Iterator = $iter_name;
             fn collatz_iter(&self) -> Self::Iterator {
-                $struct_collatz_name(self.clone().get())
+                $iter_name(self.clone().get())
             }
         }
 
         #[derive(Debug, Clone, Copy)]
-        pub struct $struct_collatz_name($int_name);
+        pub struct $iter_name($int_name);
 
-        impl Iterator for $struct_collatz_name {
+        impl Iterator for $iter_name {
             type Item = $nonzero_name;
 
             fn next(&mut self) -> Option<Self::Item> {

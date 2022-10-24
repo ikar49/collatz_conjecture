@@ -1,52 +1,57 @@
 pub mod prelude;
 
+pub trait CollatzIterator {
+    type Iterator;
+    fn collatz_iter(&self) -> Self::Iterator;
+}
+
 #[macro_use]
 mod r#macro;
 
-pub mod collatz_u8 {
-    collatz!(CollatzIteratorU8, CollatzIterU8, NonZeroU8, u8);
+pub mod r#u8 {
+    collatz!(CollatzIterU8(u8) for NonZeroU8);
 }
 
-pub mod collatz_u16 {
-    collatz!(CollatzIteratorU16, CollatzIterU16, NonZeroU16, u16);
+pub mod r#u16 {
+    collatz!(CollatzIterU16(u16) for NonZeroU16);
 }
 
-pub mod collatz_u32 {
-    collatz!(CollatzIteratorU32, CollatzIterU32, NonZeroU32, u32);
+pub mod r#u32 {
+    collatz!(CollatzIterU32(u32) for NonZeroU32);
 }
 
-pub mod collatz_u64 {
-    collatz!(CollatzIteratorU64, CollatzIterU64, NonZeroU64, u64);
+pub mod r#u64 {
+    collatz!(CollatzIterU64(u64) for NonZeroU64);
 }
 
-pub mod collatz_u128 {
-    collatz!(CollatzIteratorU128, CollatzIterU128, NonZeroU128, u128);
+pub mod r#u128 {
+    collatz!(CollatzIterU128(u128) for NonZeroU128);
 }
 
-pub mod collatz_usize {
-    collatz!(CollatzIteratorUsize, CollatzIterUsize, NonZeroUsize, usize);
+pub mod r#usize {
+    collatz!(CollatzIterUsize(usize) for NonZeroUsize);
 }
 
-pub mod collatz_i8 {
-    collatz!(CollatzIteratorI8, CollatzIterI8, NonZeroI8, i8);
+pub mod r#i8 {
+    collatz!(CollatzIterI8(i8) for NonZeroI8);
 }
 
-pub mod collatz_i16 {
-    collatz!(CollatzIteratorI16, CollatzIterI16, NonZeroI16, i16);
+pub mod r#i16 {
+    collatz!(CollatzIterI16(i16) for NonZeroI16);
 }
 
-pub mod collatz_i32 {
-    collatz!(CollatzIteratorI32, CollatzIterI32, NonZeroI32, i32);
+pub mod r#i32 {
+    collatz!(CollatzIterI32(i32) for NonZeroI32);
 }
 
-pub mod collatz_i64 {
-    collatz!(CollatzIteratorI64, CollatzIterI64, NonZeroI64, i64);
+pub mod r#i64 {
+    collatz!(CollatzIterI64(i64) for NonZeroI64);
 }
 
-pub mod collatz_i128 {
-    collatz!(CollatzIteratorI128, CollatzIterI128, NonZeroI128, i128);
+pub mod r#i128 {
+    collatz!(CollatzIterI128(i128) for NonZeroI128);
 }
 
-pub mod collatz_isize {
-    collatz!(CollatzIteratorIsize, CollatzIterIsize, NonZeroIsize, isize);
+pub mod r#isize {
+    collatz!(CollatzIterIsize(isize) for NonZeroIsize);
 }
