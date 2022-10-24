@@ -15,7 +15,25 @@ publish = false
 
 # Build information
 edition = "2021"
-# NonZero*::checked_add function is used
-rust-version = "1.64"
+rust-version = "1.64" # because NonZero*::checked_add function is used
 
 [dependencies]
+
+[features]
+default = ["unsigned"]
+
+unsigned = ["u8", "u16", "u32", "u64", "u128", "usize"]
+u8 = []
+u16 = []
+u32 = []
+u64 = []
+u128 = []
+usize = []
+
+signed = ["i8", "i16", "i32", "i64", "i128", "isize"]
+i8 = []
+i16 = []
+i32 = []
+i64 = []
+i128 = []
+isize = []
