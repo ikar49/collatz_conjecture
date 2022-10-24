@@ -1,37 +1,42 @@
-use std::io::{self, Error, ErrorKind::Other};
-
 use collatz_conjecture::prelude::*;
 
-fn main() -> io::Result<()> {
-    let mut collatz_iter = NonZeroU128::new(
+fn main() {
+    // check big unsigned number
+    let number = NonZeroU128::new(
         1024_u128.pow(12_u32) * 255 // + 1 // with +1 will overflow on first step
-    ).unwrap().collatz_iter();
-    println!("Test: {:?}", collatz_iter);
+    ).unwrap();
+    for n in number.collatz_iter() {
+        println!("{:?}", n);
+    }
+    println!();
 
-    loop {
-        let n = collatz_iter.next()
-            .ok_or(Error::new(Other, "Overflow u128!"))?;
+    // check middle signed number (need i64 feature)
+    //let number = NonZeroI64::new(
+    //    12_555_797_i64
+    //).unwrap();
+    //for n in number.collatz_iter() {
+    //    println!("{:?}", n);
+    //}
+    //println!();
 
-        println!("{}", n);
-        if n == NonZeroU128::new(1).unwrap() {
-            println!("That's cycle 4 -> 2 -> 1!");
-            break;
+    // check all numbers in u8
+    for number in 1..=u8::MAX {
+        for n in NonZeroU8::new(number).unwrap().collatz_iter() {
+            print!("{:?} ", n);
         }
+        println!();
     }
 
-    let mut collatz_iter = NonZeroU8::new(2_u8.pow(5) - 1).unwrap().collatz_iter();
-    println!("Test: {:?}", collatz_iter);
-
-    loop {
-        let n = collatz_iter.next()
-            .ok_or(Error::new(Other, "Overflow u8!"))?;
-
-        println!("{}", n);
-        if n == NonZeroU8::new(1).unwrap() {
-            println!("That's cycle 4 -> 2 -> 1!");
-            break;
-        }
-    }
-
-    Ok(())
+    // check all numbers in u128 (not recommended)
+    //for number in 1..=u128::MAX {
+    //    let number = NonZeroU128::new(number).unwrap();
+    //    for n in number.collatz_iter() {
+    //        if let Ok(n) = n {
+    //            print!("{} ", n);
+    //        } else {
+    //            print!("!");
+    //        }
+    //    }
+    //    println!();
+    //}
 }
