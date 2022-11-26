@@ -17,7 +17,7 @@ macro_rules! collatz {
             type Item = Result<$nonzero_name, &'static str>;
 
             fn next(&mut self) -> Option<Self::Item> {
-                if let None = self.0 {
+                if self.0.is_none() {
                     // На предыдущем шаге мы достигли 1, а значит попали в цикл 4 -> 2 -> 1 -> 4...
                     // Или на предыдущем шаге мы уже вернули ошибку переполнения целого
                     return None;
