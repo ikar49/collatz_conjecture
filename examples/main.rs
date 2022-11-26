@@ -1,3 +1,5 @@
+use std::num::NonZeroU8;
+use collatz_iter::CollatzIterator;
 use collatz_iter::prelude::*;
 
 fn main() {
