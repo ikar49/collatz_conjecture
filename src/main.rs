@@ -1,4 +1,4 @@
-use collatz_conjecture::prelude::*;
+use collatz_iter::prelude::*;
 
 fn main() {
     // check big unsigned number
