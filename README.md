@@ -31,5 +31,14 @@ Collatz Conjecture (3n+1 problem) Iterator
 ### Ограничения
 Работать с числами больше `2^128` не получится.
 
-## Лицензия
+## License
+Licensed under either of
+
+- Apache License, Version 2.0
+   ([LICENSE.Apache-2.0.md](LICENSE.Apache-2.0.md) or <http://www.apache.org/licenses/LICENSE-2.0>)
+- MIT license
+   ([LICENSE.MIT.md](LICENSE.MIT.md) or <http://opensource.org/licenses/MIT>)
+
+at your option.
+
 `SPDX-License-Identifier: MIT OR Apache-2.0`
